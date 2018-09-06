@@ -1,1 +1,1 @@
-## [点击预览](https://github.com/mx52jing/mx52jing.github.io)
+## [点击预览](https://mx52jing.github.io/)
