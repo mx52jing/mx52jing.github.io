@@ -119,7 +119,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/09/12/小程序其他/button.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/12/小程序其他/button-no.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/12/小程序其他/objectvalues.png">
-<meta property="og:updated_time" content="2018-09-15T12:05:09.400Z">
+<meta property="og:updated_time" content="2018-09-15T12:09:12.967Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小程序其他">
 <meta name="twitter:description" content="小程序开发中的问题">
@@ -360,7 +360,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-09-15 20:05:09" itemprop="dateModified" datetime="2018-09-15T20:05:09+08:00">2018-09-15</time>
+                <time title="修改时间：2018-09-15 20:09:12" itemprop="dateModified" datetime="2018-09-15T20:09:12+08:00">2018-09-15</time>
               
             
           </span>
@@ -425,7 +425,7 @@
       
         <p>小程序开发中的问题</p>
 <a id="more"></a>
-<h3 id="button"><a href="#button" class="headerlink" title="button"></a>button</h3><p>小程序中的button自带了边框描边，在开发过程中设置</p>
+<h3 id="button边框描边问题"><a href="#button边框描边问题" class="headerlink" title="button边框描边问题"></a>button边框描边问题</h3><p>小程序中的button自带了边框描边，在开发过程中设置</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="selector-tag">button</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>无效果，后经过查资料发现，小程序的button不能通过这样设置</p>
 <p>解决方法: 使用伪元素</p>
@@ -434,7 +434,7 @@
 <p><img src="/2018/09/12/小程序其他/button.png" alt=""></p>
 <p>无描边</p>
 <p><img src="/2018/09/12/小程序其他/button-no.png" alt=""></p>
-<h3 id="Component"><a href="#Component" class="headerlink" title="Component"></a>Component</h3><p>如果在写公共组件中有iconfont字体，在组件内部设置icon的class是无效的</p>
+<h3 id="Component里面的iconfont"><a href="#Component里面的iconfont" class="headerlink" title="Component里面的iconfont"></a>Component里面的iconfont</h3><p>如果在写公共组件中有iconfont字体，在组件内部设置icon的class是无效的</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//例如custom-component组件内</span></span><br><span class="line"></span><br><span class="line">&lt;view <span class="class"><span class="keyword">class</span></span>=<span class="string">"icon-xxx"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 直接这样写是没有效果的</span></span><br></pre></td></tr></table></figure>
 <p>解决方法</p>
 <p>小程序的componnt可以给组件内部传class</p>
@@ -680,7 +680,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#button"><span class="nav-number">1.</span> <span class="nav-text">button</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Component"><span class="nav-number">2.</span> <span class="nav-text">Component</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部分手机不支持Object-values"><span class="nav-number">3.</span> <span class="nav-text">部分手机不支持Object.values</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#button边框描边问题"><span class="nav-number">1.</span> <span class="nav-text">button边框描边问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Component里面的iconfont"><span class="nav-number">2.</span> <span class="nav-text">Component里面的iconfont</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部分手机不支持Object-values"><span class="nav-number">3.</span> <span class="nav-text">部分手机不支持Object.values</span></a></li></ol></div>
             
 
           </div>
