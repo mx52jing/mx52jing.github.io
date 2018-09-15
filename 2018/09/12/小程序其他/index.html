@@ -118,7 +118,8 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2018/09/12/小程序其他/button.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/12/小程序其他/button-no.png">
-<meta property="og:updated_time" content="2018-09-12T14:40:04.624Z">
+<meta property="og:image" content="http://yoursite.com/2018/09/12/小程序其他/objectvalues.png">
+<meta property="og:updated_time" content="2018-09-15T12:05:09.400Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小程序其他">
 <meta name="twitter:description" content="小程序开发中的问题">
@@ -342,12 +343,24 @@
                 
               
 
-              <time title="创建时间：2018-09-12 22:15:55 / 修改时间：22:40:04" itemprop="dateCreated datePublished" datetime="2018-09-12T22:15:55+08:00">2018-09-12</time>
+              <time title="创建时间：2018-09-12 22:15:55" itemprop="dateCreated datePublished" datetime="2018-09-12T22:15:55+08:00">2018-09-12</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-09-15 20:05:09" itemprop="dateModified" datetime="2018-09-15T20:05:09+08:00">2018-09-15</time>
               
             
           </span>
@@ -431,6 +444,13 @@
 <p>调用组件的地方</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//xxxx就可以使用icon-xxx，这样就能使iconfont生效了</span></span><br><span class="line"></span><br><span class="line">&lt;custom-component icon-<span class="class"><span class="keyword">class</span></span>=<span class="string">"xxxx"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">custom-component</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 <p>详见<a href="https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/wxml-wxss.html" target="_blank" rel="noopener">这里</a></p>
+<h3 id="部分手机不支持Object-values"><a href="#部分手机不支持Object-values" class="headerlink" title="部分手机不支持Object.values"></a>部分手机不支持Object.values</h3><p>在小程序代码中使用了Object.values这个方法，但是调试过程中，发现在iOS 10.2版本的手机上报错，Object.values is not a function</p>
+<p>自行Google后发现有同样人出现了这个问题，官方回复是现在还只支持目前支持的是 es6 转 es5。</p>
+<p>从<a href="http://es6.ruanyifeng.com/#docs/object#Object-keys%EF%BC%8CObject-values%EF%BC%8CObject-entries" target="_blank" rel="noopener">阮老师的博客</a>中了解到Object.values是ES2017引入的</p>
+<p><img src="/2018/09/12/小程序其他/objectvalues.png" alt=""></p>
+<p>参考链接</p>
+<p>1.<a href="https://developers.weixin.qq.com/community/develop/doc/000a8cc2f307f0f5c5c6b14ca5b400" target="_blank" rel="noopener">这里</a></p>
+<p>2.<a href="https://developers.weixin.qq.com/miniprogram/dev/devtools/details.html#%E5%AE%A2%E6%88%B7%E7%AB%AFes6-api-%E6%94%AF%E6%8C%81%E6%83%85%E5%86%B5" target="_blank" rel="noopener">这里</a></p>
 
       
     </div>
@@ -660,7 +680,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#button"><span class="nav-number">1.</span> <span class="nav-text">button</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Component"><span class="nav-number">2.</span> <span class="nav-text">Component</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#button"><span class="nav-number">1.</span> <span class="nav-text">button</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Component"><span class="nav-number">2.</span> <span class="nav-text">Component</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部分手机不支持Object-values"><span class="nav-number">3.</span> <span class="nav-text">部分手机不支持Object.values</span></a></li></ol></div>
             
 
           </div>
