@@ -84,10 +84,10 @@ deploy:
   -type: leancloud_counter_security_sync
   repo: git@github.com:mx52jing/mx52jing.github.io.git
   branch: master
-  
+
 leancloud_counter_security:
   enable_sync: true
   app_id: x0I69G1wnFwsUYnCtEXb5OGQ-gzGzoHsz
   app_key: p9PXffyT1ouGyVrX38UgbgzE
-  username: mx52jing # will be asked while deploying if be left blank
+  username: # will be asked while deploying if be left blank
   password: # recommend to leave it blank for security, will be asked while deploying if be left blank
