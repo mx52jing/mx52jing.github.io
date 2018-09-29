@@ -1,6 +1,5 @@
 ---
-layout: '关于css样式-webkit-box-orient:'
-title: vertical不生效问题
+title: 关于css样式-webkit-box-orient:vertical不生效问题
 date: 2018-09-29 18:42:35
 categories:
 - CSS
