@@ -172,6 +172,43 @@ js代码：
 
 ```
 
+第三种：
+
+前面两种一个是不会立即触发，然后停止触发之后会再执行一次，一种是会立即触发，执行完之后不会再触发一次
+那么如果想要立即触发并且停止触发之后会再执行一次，要怎么做呢：
+
+代码：
+
+``` 
+
+  function throttle(fn, delay= 500) {
+    let timer, prevTime = 0;
+    return function() {
+      let _this = this,
+        args = arguments,
+        nowTime = Date.now(),
+        residualTime = nowTime - prevTime - delay
+      if(residualTime > 0) {
+        if(timer) {
+          clearTimeout(timer)
+          timer = null
+        }
+        fn.apply(_this, args)
+        prevTime = nowTime
+      } else {
+        if(!timer) {
+          timer = setTimeout(function(){
+            fn.apply(_this, args)
+            prevTime = nowTime
+            timer = null
+          }, delay)
+        }
+      }
+    }
+  }
+
+```
+
 ### 不同
 
 个人理解：
