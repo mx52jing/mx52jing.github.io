@@ -7,11 +7,11 @@ tags:
 - Docker
 ---
 
-# Docker
-
 ## 基本概念
 
 Dokcer包括3个基本概念
+
+<!-- more -->
 
 ```
 镜像（Image）
@@ -196,7 +196,7 @@ docker image rm [options] <name1> [<name2> ...]
 
 name可以是镜像ID、镜像名称、镜像摘要
 
-更精确使用**镜像摘要**删除镜像
+更精确的是使用**镜像摘要**删除镜像
 
 ```
 docker image ls --digests
@@ -206,4 +206,101 @@ REPOSITORY          TAG                 DIGEST                                  
 nginx               latest              sha256:b73f527d86e3461fd652f62cf47e7b375196063bbbd503e853af5be16597cb2e   dbfc48660aeb        13 days ago         109MB
 
 docker image rm sha256:b73f527d86e3461fd652f62cf47e7b375196063bbbd503e853af5be16597cb2e
+```
+
+## 容器
+
+#### 启动容器
+
+两种方式：
+
+1、基于镜像新建容器启动
+
+2、重启终止状态的容器
+
+##### 新建并启动 docker run
+```
+-d              守护状态运行
+-it             交互状态行运行
+--name          my_nginx 容器的别名
+--link          web/www 通过别名访问	
+-e              MY_ENV=hello 添加环境变量
+-p              8080:80 端口映射
+--entrypoint    容器起来首先执行的命令
+-v              挂载点
+--network       指定网络
+	 bridge、host、overlay
+--ip            指定容器ip
+```
+
+![](Docker笔记/dorit.png)
+
+获取容器的输出信息，可以通过 docker container logs
+
+##### 启动已终止容器 docker container start
+
+```
+通过docker container start --help查看
+
+docker container start [OPTIONS] CONTAINER [CONTAINER...]
+```
+
+查看运行中的容器：
+
+```
+docker ps 或者 docker container ls
+```
+
+##### 终止容器
+
+```
+通过docker container stop --help查看
+
+docker container stop [OPTIONS] CONTAINER [CONTAINER...]
+```
+
+#####重启
+
+```
+通过docker container restart --help查看
+
+docker container restart [OPTIONS] CONTAINER [CONTAINER...]
+```
+
+终止状态的容器可以用 **docker container ls -a** 命令看到
+
+#### 进入容器
+
+进入运行中的容器： 
+```
+详细输入docker exec --help查看
+
+docker exec -it ID bash
+```
+
+#### 导出、导入容器
+
+导出容器
+```
+docker export [OPTIONS] CONTAINER
+```
+
+导入容器
+
+```
+docker import [OPTIONS] file|URL|- [REPOSITORY[:TAG]]
+```
+
+####删除容器
+
+```
+docker ps -a 或者 docker container ls -a 获取所有容器状况
+
+docker container rm ID(容器ID)
+
+如果要删除一个运行中的容器，可以添加 -f 参数
+
+清理所有处于终止状态的容器
+
+docker container prune
 ```
