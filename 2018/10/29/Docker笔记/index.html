@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.1',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Docker基本概念Dokcer包括3个基本概念 12345镜像（Image）容器（Container）仓库（Repository） Docker镜像(Image)Decker镜像是一个特殊的文件系统，提供容器运行时所需的仓库、资源、配置等文件以及容器运行所需参数。 12345镜像是分层的。每一层叫做一个镜像层，使用docker  history imageid查看镜像是有依赖关系的。上层的镜像依">
+<meta name="keywords" content="Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker笔记">
+<meta property="og:url" content="http://yoursite.com/2018/10/29/Docker笔记/index.html">
+<meta property="og:site_name" content="哈萨Q&#39;s Blog">
+<meta property="og:description" content="Docker基本概念Dokcer包括3个基本概念 12345镜像（Image）容器（Container）仓库（Repository） Docker镜像(Image)Decker镜像是一个特殊的文件系统，提供容器运行时所需的仓库、资源、配置等文件以及容器运行所需参数。 12345镜像是分层的。每一层叫做一个镜像层，使用docker  history imageid查看镜像是有依赖关系的。上层的镜像依">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/10/29/Docker笔记/xuni.png">
+<meta property="og:image" content="http://yoursite.com/2018/10/29/Docker笔记/middle.png">
+<meta property="og:updated_time" content="2018-10-29T07:39:12.903Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker笔记">
+<meta name="twitter:description" content="Docker基本概念Dokcer包括3个基本概念 12345镜像（Image）容器（Container）仓库（Repository） Docker镜像(Image)Decker镜像是一个特殊的文件系统，提供容器运行时所需的仓库、资源、配置等文件以及容器运行所需参数。 12345镜像是分层的。每一层叫做一个镜像层，使用docker  history imageid查看镜像是有依赖关系的。上层的镜像依">
+<meta name="twitter:image" content="http://yoursite.com/2018/10/29/Docker笔记/xuni.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/10/29/Docker笔记/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Docker笔记 | 哈萨Q's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">哈萨Q's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/29/Docker笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="mx52jing">
+      <meta itemprop="description" content="工作学习记录">
+      <meta itemprop="image" content="/images/avater.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="哈萨Q's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Docker笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-29 15:22:41 / 修改时间：15:39:12" itemprop="dateCreated datePublished" datetime="2018-10-29T15:22:41+08:00">2018-10-29</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>Dokcer包括3个基本概念</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">镜像（Image）</span><br><span class="line"></span><br><span class="line">容器（<span class="keyword">Container</span>）</span><br><span class="line"></span><br><span class="line">仓库（Repository）</span><br></pre></td></tr></table></figure>
+<h4 id="Docker镜像-Image"><a href="#Docker镜像-Image" class="headerlink" title="Docker镜像(Image)"></a>Docker镜像(Image)</h4><p>Decker镜像是一个特殊的文件系统，提供容器运行时所需的仓库、资源、配置等文件以及容器运行所需参数。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">镜像是分层的。每一层叫做一个镜像层，使用docker  <span class="built_in">history</span> imageid查看</span><br><span class="line"></span><br><span class="line">镜像是有依赖关系的。上层的镜像依赖下层的镜像，这样设计的好处是，镜像可以复用</span><br><span class="line"></span><br><span class="line">镜像是只读的。下层的镜像层不会被修改，只能新增镜像层，所以会越来越多</span><br></pre></td></tr></table></figure>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">获取镜像的几种方式</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>、从仓库获取docker  pull</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>、Dcokerfile构建 docker build</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>、文件载入 docker load</span><br></pre></td></tr></table></figure>
+<h4 id="Docker容器-Container"><a href="#Docker容器-Container" class="headerlink" title="Docker容器(Container)"></a>Docker容器(Container)</h4><p>容器是基于镜像来运行的。docker run 命令使用image启动了一个运行中的系统，就是container（容器）。</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">可读写的</span><br><span class="line"></span><br><span class="line">在容器里面进行的操作不会影响<span class="built_in">image</span>，删除文件也只是在容器里面标记为已删除</span><br><span class="line"></span><br><span class="line">容器删除，则保存在容器中的数据也会被删除，容器停止，数据不会被删除</span><br><span class="line"></span><br><span class="line">容器只有被保存成镜像才能被移植到其他地方</span><br></pre></td></tr></table></figure>
+<h4 id="Docker仓库-Repository"><a href="#Docker仓库-Repository" class="headerlink" title="Docker仓库(Repository)"></a>Docker仓库(Repository)</h4><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Dokcker的仓库和git仓库差不多，拥有<span class="keyword">tag</span>，仓库名。在本地构建完镜像以后，就可以通过仓库分发</span><br></pre></td></tr></table></figure>
+<p><a href="https://hub.docker.com/" target="_blank" rel="noopener">官方仓库</a>、<a href="https://dev.aliyun.com/search.html" target="_blank" rel="noopener">阿里云</a></p>
+<h2 id="安装-macOS"><a href="#安装-macOS" class="headerlink" title="安装(macOS)"></a>安装(macOS)</h2><h4 id="系统要求"><a href="#系统要求" class="headerlink" title="系统要求"></a>系统要求</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">Docker</span> <span class="selector-tag">for</span> <span class="selector-tag">Mac</span> 要求系统最低为 <span class="selector-tag">macOS</span> 10<span class="selector-class">.10</span><span class="selector-class">.3</span> <span class="selector-tag">Yosemite</span>。如果系统不满足需求，可以安装 <span class="selector-tag">Docker</span> <span class="selector-tag">Toolbox</span>。</span><br></pre></td></tr></table></figure>
+<p><a href="https://docs.docker.com/toolbox/overview/" target="_blank" rel="noopener">Docker Toolbox安装地址</a></p>
+<h4 id="Homebrew安装"><a href="#Homebrew安装" class="headerlink" title="Homebrew安装"></a>Homebrew安装</h4><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">brew </span>cask <span class="keyword">install </span>docker</span><br></pre></td></tr></table></figure>
+<h4 id="手动安装"><a href="#手动安装" class="headerlink" title="手动安装"></a>手动安装</h4><p>点击下载<a href="https://download.docker.com/mac/stable/Docker.dmg" target="_blank" rel="noopener">Stable</a>或者<a href="https://download.docker.com/mac/edge/Docker.dmg" target="_blank" rel="noopener">Edge</a>版本for mac</p>
+<p>安装完成后在启动台找到类似<strong>小鲸鱼</strong>的图标，双击运行</p>
+<h4 id="国内镜像加速"><a href="#国内镜像加速" class="headerlink" title="国内镜像加速"></a>国内镜像加速</h4><figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">点击任务栏 =&gt; Perferences =&gt; Deamon =&gt; Registry mirrors =&gt; 添加https://registry.docker-cn.com =&gt; 点击Apply &amp; <span class="keyword">Restart</span></span><br></pre></td></tr></table></figure>
+<p>等待docker重启完毕，检查是否配置成功</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker info</span><br><span class="line"></span><br><span class="line">如果看到：</span><br><span class="line"></span><br><span class="line">Registry Mirror<span class="variable">s:</span></span><br><span class="line"></span><br><span class="line"> http<span class="variable">s:</span>//registry.docker-<span class="keyword">cn</span>.<span class="keyword">com</span>/</span><br></pre></td></tr></table></figure>
+<p>说明配置成功</p>
+<h2 id="使用镜像"><a href="#使用镜像" class="headerlink" title="使用镜像"></a>使用镜像</h2><h4 id="获取镜像"><a href="#获取镜像" class="headerlink" title="获取镜像"></a>获取镜像</h4><p>从 Docker 镜像仓库获取镜像的命令是 docker pull</p>
+<p>可在控制台通过<strong>docker pull–help</strong>查看</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker pull <span class="comment">[选项]</span> <span class="comment">[Docker Registry 地址<span class="comment">[:端口号]</span>/]</span>仓库名<span class="comment">[:标签]</span></span><br><span class="line"></span><br><span class="line">Docker 镜像仓库地址：地址的格式一般是 &lt;域名/IP&gt;<span class="comment">[:端口号]</span>。默认地址是 Docker Hub</span><br><span class="line"></span><br><span class="line">仓库名：如之前所说，这里的仓库名是两段式名称，即 &lt;用户名&gt;/&lt;软件名&gt;。</span><br><span class="line"></span><br><span class="line">对于 Docker Hub，如果不给出用户名，则默认为 library，也就是官方镜像。</span><br></pre></td></tr></table></figure>
+<h4 id="列出镜像"><a href="#列出镜像" class="headerlink" title="列出镜像"></a>列出镜像</h4><p>查看所拥有的镜像</p>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images 或者 docker <span class="keyword">image</span> <span class="keyword">ls</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">REPOSITORY         TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">nginx               latest              dbfc48660aeb        <span class="number">12</span> days ago         <span class="number">109</span>MB</span><br><span class="line">phpwithmysql        latest              be93c6b1b8b4        <span class="number">7</span> weeks ago         <span class="number">355</span>MB</span><br><span class="line">koa-demo            latest              <span class="number">54</span>d496779e7e        <span class="number">7</span> weeks ago         <span class="number">676</span>MB</span><br><span class="line">ubuntu              <span class="number">18.04</span>               <span class="number">16508e5</span>c265d        <span class="number">2</span> months ago        <span class="number">84.1</span>MB</span><br><span class="line">mysql               <span class="number">5.7</span>                 <span class="number">43</span>b029b6b640        <span class="number">2</span> months ago        <span class="number">372</span>MB</span><br><span class="line">php                 <span class="number">5.6</span>-apache          <span class="number">12398</span>af6f4de        <span class="number">3</span> months ago        <span class="number">355</span>MB</span><br><span class="line">node                <span class="number">8.4</span>                 <span class="number">386940</span>f92d24        <span class="number">13</span> months ago       <span class="number">673</span>MB</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">name</th>
+<th style="text-align:center">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">REPOSITORY</td>
+<td style="text-align:center">仓库名</td>
+</tr>
+<tr>
+<td style="text-align:center">TAG</td>
+<td style="text-align:center">标签</td>
+</tr>
+<tr>
+<td style="text-align:center">IMAGE ID</td>
+<td style="text-align:center">镜像 ID</td>
+</tr>
+<tr>
+<td style="text-align:center">CREATED</td>
+<td style="text-align:center">创建时间</td>
+</tr>
+<tr>
+<td style="text-align:center">SIZE</td>
+<td style="text-align:center">占用空间</td>
+</tr>
+</tbody>
+</table>
+<h4 id="镜像体积"><a href="#镜像体积" class="headerlink" title="镜像体积"></a>镜像体积</h4><p>查看镜像、容器、数据卷所占用空间<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker<span class="built_in"> system </span>df</span><br></pre></td></tr></table></figure></p>
+<h4 id="虚悬镜像"><a href="#虚悬镜像" class="headerlink" title="虚悬镜像"></a>虚悬镜像</h4><p><img src="/2018/10/29/Docker笔记/xuni.png" alt=""></p>
+<p>如图上面的<none>镜像</none></p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">原本是有名称的，当官方更新镜像版本之后，使用docker pull时，镜像名称被转移</span><br><span class="line">到新镜像身上，旧的镜像名称就成了<span class="literal">none</span>，docker build也会出现此类情况。由于</span><br><span class="line">新旧镜像同名，就镜像名称名称被取消成为<span class="literal">none</span>，称之为虚悬镜像。</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查看虚悬镜像</span></span><br><span class="line"></span><br><span class="line">docker image ls <span class="params">-f</span> dangling=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>删除虚悬镜像</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">image</span> prune</span><br></pre></td></tr></table></figure>
+<h4 id="中间层镜像"><a href="#中间层镜像" class="headerlink" title="中间层镜像"></a>中间层镜像</h4><p>为了加速镜像构建、重复利用资源，Docker 会利用 中间层镜像。所以在使用一段时间后，可能会看到一些依赖的中间层镜像。默认的 docker image ls 列表中只会显示顶层镜像，如果希望显示包括中间层镜像在内的所有镜像的话，需要加 -a 参数。</p>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">image</span> <span class="keyword">ls</span> -a</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/10/29/Docker笔记/middle.png" alt=""></p>
+<p>这里面的虚悬镜像很多是中间层镜像，不要删除。</p>
+<h2 id="删除镜像"><a href="#删除镜像" class="headerlink" title="删除镜像"></a>删除镜像</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker image rm [<span class="keyword">options</span>] <span class="symbol">&lt;name1&gt;</span> [<span class="symbol">&lt;name2&gt;</span> ...]</span><br></pre></td></tr></table></figure>
+<p>name可以是镜像ID、镜像名称、镜像摘要</p>
+<p>更精确使用<strong>镜像摘要</strong>删除镜像</p>
+<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">image</span> ls --digests</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">REPOSITORY          TAG                 DIGEST                                                                    <span class="built_in">IMAGE</span> ID            CREATED             <span class="built_in">SIZE</span></span><br><span class="line">nginx               latest              sha256:b73f527d86e3461fd652f62cf47e7b375196063bbbd503e853af5be16597cb2e   dbfc48660aeb        <span class="number">13</span> days ago         <span class="number">109</span>MB</span><br><span class="line"></span><br><span class="line">docker <span class="built_in">image</span> rm sha256:b73f527d86e3461fd652f62cf47e7b375196063bbbd503e853af5be16597cb2e</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>万一有人点了呢</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="mx52jing 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="mx52jing 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Docker/" rel="tag"># Docker</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/11/JS函数防抖、节流/" rel="next" title="JS函数防抖、节流">
+                <i class="fa fa-chevron-left"></i> JS函数防抖、节流
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avater.jpg"
+                alt="mx52jing" />
+            
+              <p class="site-author-name" itemprop="name">mx52jing</p>
+              <p class="site-description motion-element" itemprop="description">工作学习记录</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/mx52jing" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker"><span class="nav-number">1.</span> <span class="nav-text">Docker</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker镜像-Image"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">Docker镜像(Image)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker容器-Container"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">Docker容器(Container)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker仓库-Repository"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">Docker仓库(Repository)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-macOS"><span class="nav-number">1.2.</span> <span class="nav-text">安装(macOS)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#系统要求"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">系统要求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Homebrew安装"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">Homebrew安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#手动安装"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">手动安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#国内镜像加速"><span class="nav-number">1.2.0.4.</span> <span class="nav-text">国内镜像加速</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用镜像"><span class="nav-number">1.3.</span> <span class="nav-text">使用镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取镜像"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">获取镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#列出镜像"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">列出镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#镜像体积"><span class="nav-number">1.3.0.3.</span> <span class="nav-text">镜像体积</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#虚悬镜像"><span class="nav-number">1.3.0.4.</span> <span class="nav-text">虚悬镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中间层镜像"><span class="nav-number">1.3.0.5.</span> <span class="nav-text">中间层镜像</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除镜像"><span class="nav-number">1.4.</span> <span class="nav-text">删除镜像</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <div id="bottomheart" style="cursor:pointer;">
+      <i class="fa fa-heartbeat"></i>
+    </div>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mx52jing</span>
+  
+  <!-- 新增访客统计代码 -->
+
+  <div class="busuanzi-count">
+      <script async="" src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      <span class="site-uv">
+        <i class="fa fa-user"></i>
+        访问用户: <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 人
+      </span>
+      <div class="powered-by"></div>
+      <span class="site-uv">
+        <i class="fa fa-eye"></i>
+        访问次数: <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次
+      </span>
+      <!-- 博客字数统计 -->
+      <span class="site-pv">
+        <i class="fa fa-pencil"></i>
+        博客全站共: <span class="post-count">4.3k</span> 字
+      </span>
+  </div>
+  <!-- 新增访客统计代码 END-->
+
+  <!-- 在网页底部添加网站运行时间 --> 
+  <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("07/21/2018 00:00:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "Run for "+dnum+" Days ";
+        document.getElementById("times").innerHTML = hnum + " Hours " + mnum + " m " + snum + " s";
+    }
+setInterval("createtime()",250);
+</script>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/hexo-next-bottomheart.js"></script>
+</body>
+</html>

@@ -296,6 +296,230 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/29/Docker笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="mx52jing">
+      <meta itemprop="description" content="工作学习记录">
+      <meta itemprop="image" content="/images/avater.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="哈萨Q's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/29/Docker笔记/" itemprop="url">
+                  Docker笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-29 15:22:41 / 修改时间：15:39:12" itemprop="dateCreated datePublished" datetime="2018-10-29T15:22:41+08:00">2018-10-29</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>Dokcer包括3个基本概念</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">镜像（Image）</span><br><span class="line"></span><br><span class="line">容器（<span class="keyword">Container</span>）</span><br><span class="line"></span><br><span class="line">仓库（Repository）</span><br></pre></td></tr></table></figure>
+<h4 id="Docker镜像-Image"><a href="#Docker镜像-Image" class="headerlink" title="Docker镜像(Image)"></a>Docker镜像(Image)</h4><p>Decker镜像是一个特殊的文件系统，提供容器运行时所需的仓库、资源、配置等文件以及容器运行所需参数。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">镜像是分层的。每一层叫做一个镜像层，使用docker  <span class="built_in">history</span> imageid查看</span><br><span class="line"></span><br><span class="line">镜像是有依赖关系的。上层的镜像依赖下层的镜像，这样设计的好处是，镜像可以复用</span><br><span class="line"></span><br><span class="line">镜像是只读的。下层的镜像层不会被修改，只能新增镜像层，所以会越来越多</span><br></pre></td></tr></table></figure>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">获取镜像的几种方式</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>、从仓库获取docker  pull</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>、Dcokerfile构建 docker build</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>、文件载入 docker load</span><br></pre></td></tr></table></figure>
+<h4 id="Docker容器-Container"><a href="#Docker容器-Container" class="headerlink" title="Docker容器(Container)"></a>Docker容器(Container)</h4><p>容器是基于镜像来运行的。docker run 命令使用image启动了一个运行中的系统，就是container（容器）。</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">可读写的</span><br><span class="line"></span><br><span class="line">在容器里面进行的操作不会影响<span class="built_in">image</span>，删除文件也只是在容器里面标记为已删除</span><br><span class="line"></span><br><span class="line">容器删除，则保存在容器中的数据也会被删除，容器停止，数据不会被删除</span><br><span class="line"></span><br><span class="line">容器只有被保存成镜像才能被移植到其他地方</span><br></pre></td></tr></table></figure>
+<h4 id="Docker仓库-Repository"><a href="#Docker仓库-Repository" class="headerlink" title="Docker仓库(Repository)"></a>Docker仓库(Repository)</h4><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Dokcker的仓库和git仓库差不多，拥有<span class="keyword">tag</span>，仓库名。在本地构建完镜像以后，就可以通过仓库分发</span><br></pre></td></tr></table></figure>
+<p><a href="https://hub.docker.com/" target="_blank" rel="noopener">官方仓库</a>、<a href="https://dev.aliyun.com/search.html" target="_blank" rel="noopener">阿里云</a></p>
+<h2 id="安装-macOS"><a href="#安装-macOS" class="headerlink" title="安装(macOS)"></a>安装(macOS)</h2><h4 id="系统要求"><a href="#系统要求" class="headerlink" title="系统要求"></a>系统要求</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">Docker</span> <span class="selector-tag">for</span> <span class="selector-tag">Mac</span> 要求系统最低为 <span class="selector-tag">macOS</span> 10<span class="selector-class">.10</span><span class="selector-class">.3</span> <span class="selector-tag">Yosemite</span>。如果系统不满足需求，可以安装 <span class="selector-tag">Docker</span> <span class="selector-tag">Toolbox</span>。</span><br></pre></td></tr></table></figure>
+<p><a href="https://docs.docker.com/toolbox/overview/" target="_blank" rel="noopener">Docker Toolbox安装地址</a></p>
+<h4 id="Homebrew安装"><a href="#Homebrew安装" class="headerlink" title="Homebrew安装"></a>Homebrew安装</h4><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">brew </span>cask <span class="keyword">install </span>docker</span><br></pre></td></tr></table></figure>
+<h4 id="手动安装"><a href="#手动安装" class="headerlink" title="手动安装"></a>手动安装</h4><p>点击下载<a href="https://download.docker.com/mac/stable/Docker.dmg" target="_blank" rel="noopener">Stable</a>或者<a href="https://download.docker.com/mac/edge/Docker.dmg" target="_blank" rel="noopener">Edge</a>版本for mac</p>
+<p>安装完成后在启动台找到类似<strong>小鲸鱼</strong>的图标，双击运行</p>
+<h4 id="国内镜像加速"><a href="#国内镜像加速" class="headerlink" title="国内镜像加速"></a>国内镜像加速</h4><figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">点击任务栏 =&gt; Perferences =&gt; Deamon =&gt; Registry mirrors =&gt; 添加https://registry.docker-cn.com =&gt; 点击Apply &amp; <span class="keyword">Restart</span></span><br></pre></td></tr></table></figure>
+<p>等待docker重启完毕，检查是否配置成功</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker info</span><br><span class="line"></span><br><span class="line">如果看到：</span><br><span class="line"></span><br><span class="line">Registry Mirror<span class="variable">s:</span></span><br><span class="line"></span><br><span class="line"> http<span class="variable">s:</span>//registry.docker-<span class="keyword">cn</span>.<span class="keyword">com</span>/</span><br></pre></td></tr></table></figure>
+<p>说明配置成功</p>
+<h2 id="使用镜像"><a href="#使用镜像" class="headerlink" title="使用镜像"></a>使用镜像</h2><h4 id="获取镜像"><a href="#获取镜像" class="headerlink" title="获取镜像"></a>获取镜像</h4><p>从 Docker 镜像仓库获取镜像的命令是 docker pull</p>
+<p>可在控制台通过<strong>docker pull–help</strong>查看</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker pull <span class="comment">[选项]</span> <span class="comment">[Docker Registry 地址<span class="comment">[:端口号]</span>/]</span>仓库名<span class="comment">[:标签]</span></span><br><span class="line"></span><br><span class="line">Docker 镜像仓库地址：地址的格式一般是 &lt;域名/IP&gt;<span class="comment">[:端口号]</span>。默认地址是 Docker Hub</span><br><span class="line"></span><br><span class="line">仓库名：如之前所说，这里的仓库名是两段式名称，即 &lt;用户名&gt;/&lt;软件名&gt;。</span><br><span class="line"></span><br><span class="line">对于 Docker Hub，如果不给出用户名，则默认为 library，也就是官方镜像。</span><br></pre></td></tr></table></figure>
+<h4 id="列出镜像"><a href="#列出镜像" class="headerlink" title="列出镜像"></a>列出镜像</h4><p>查看所拥有的镜像</p>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images 或者 docker <span class="keyword">image</span> <span class="keyword">ls</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">REPOSITORY         TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">nginx               latest              dbfc48660aeb        <span class="number">12</span> days ago         <span class="number">109</span>MB</span><br><span class="line">phpwithmysql        latest              be93c6b1b8b4        <span class="number">7</span> weeks ago         <span class="number">355</span>MB</span><br><span class="line">koa-demo            latest              <span class="number">54</span>d496779e7e        <span class="number">7</span> weeks ago         <span class="number">676</span>MB</span><br><span class="line">ubuntu              <span class="number">18.04</span>               <span class="number">16508e5</span>c265d        <span class="number">2</span> months ago        <span class="number">84.1</span>MB</span><br><span class="line">mysql               <span class="number">5.7</span>                 <span class="number">43</span>b029b6b640        <span class="number">2</span> months ago        <span class="number">372</span>MB</span><br><span class="line">php                 <span class="number">5.6</span>-apache          <span class="number">12398</span>af6f4de        <span class="number">3</span> months ago        <span class="number">355</span>MB</span><br><span class="line">node                <span class="number">8.4</span>                 <span class="number">386940</span>f92d24        <span class="number">13</span> months ago       <span class="number">673</span>MB</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">name</th>
+<th style="text-align:center">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">REPOSITORY</td>
+<td style="text-align:center">仓库名</td>
+</tr>
+<tr>
+<td style="text-align:center">TAG</td>
+<td style="text-align:center">标签</td>
+</tr>
+<tr>
+<td style="text-align:center">IMAGE ID</td>
+<td style="text-align:center">镜像 ID</td>
+</tr>
+<tr>
+<td style="text-align:center">CREATED</td>
+<td style="text-align:center">创建时间</td>
+</tr>
+<tr>
+<td style="text-align:center">SIZE</td>
+<td style="text-align:center">占用空间</td>
+</tr>
+</tbody>
+</table>
+<h4 id="镜像体积"><a href="#镜像体积" class="headerlink" title="镜像体积"></a>镜像体积</h4><p>查看镜像、容器、数据卷所占用空间<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker<span class="built_in"> system </span>df</span><br></pre></td></tr></table></figure></p>
+<h4 id="虚悬镜像"><a href="#虚悬镜像" class="headerlink" title="虚悬镜像"></a>虚悬镜像</h4><p><img src="/2018/10/29/Docker笔记/xuni.png" alt=""></p>
+<p>如图上面的<none>镜像</none></p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">原本是有名称的，当官方更新镜像版本之后，使用docker pull时，镜像名称被转移</span><br><span class="line">到新镜像身上，旧的镜像名称就成了<span class="literal">none</span>，docker build也会出现此类情况。由于</span><br><span class="line">新旧镜像同名，就镜像名称名称被取消成为<span class="literal">none</span>，称之为虚悬镜像。</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查看虚悬镜像</span></span><br><span class="line"></span><br><span class="line">docker image ls <span class="params">-f</span> dangling=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>删除虚悬镜像</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">image</span> prune</span><br></pre></td></tr></table></figure>
+<h4 id="中间层镜像"><a href="#中间层镜像" class="headerlink" title="中间层镜像"></a>中间层镜像</h4><p>为了加速镜像构建、重复利用资源，Docker 会利用 中间层镜像。所以在使用一段时间后，可能会看到一些依赖的中间层镜像。默认的 docker image ls 列表中只会显示顶层镜像，如果希望显示包括中间层镜像在内的所有镜像的话，需要加 -a 参数。</p>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">image</span> <span class="keyword">ls</span> -a</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/10/29/Docker笔记/middle.png" alt=""></p>
+<p>这里面的虚悬镜像很多是中间层镜像，不要删除。</p>
+<h2 id="删除镜像"><a href="#删除镜像" class="headerlink" title="删除镜像"></a>删除镜像</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker image rm [<span class="keyword">options</span>] <span class="symbol">&lt;name1&gt;</span> [<span class="symbol">&lt;name2&gt;</span> ...]</span><br></pre></td></tr></table></figure>
+<p>name可以是镜像ID、镜像名称、镜像摘要</p>
+<p>更精确使用<strong>镜像摘要</strong>删除镜像</p>
+<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">image</span> ls --digests</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">REPOSITORY          TAG                 DIGEST                                                                    <span class="built_in">IMAGE</span> ID            CREATED             <span class="built_in">SIZE</span></span><br><span class="line">nginx               latest              sha256:b73f527d86e3461fd652f62cf47e7b375196063bbbd503e853af5be16597cb2e   dbfc48660aeb        <span class="number">13</span> days ago         <span class="number">109</span>MB</span><br><span class="line"></span><br><span class="line">docker <span class="built_in">image</span> rm sha256:b73f527d86e3461fd652f62cf47e7b375196063bbbd503e853af5be16597cb2e</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/11/JS函数防抖、节流/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1229,7 +1453,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-09-29 19:19:06" itemprop="dateModified" datetime="2018-09-29T19:19:06+08:00">2018-09-29</time>
+                <time title="修改时间：2018-10-29 15:24:59" itemprop="dateModified" datetime="2018-10-29T15:24:59+08:00">2018-10-29</time>
               
             
           </span>
@@ -1372,7 +1596,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1391,7 +1615,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">3</span>
+                      
+                    
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1410,7 +1636,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">3</span>
+                      
+                    
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1483,7 +1711,7 @@
       <!-- 博客字数统计 -->
       <span class="site-pv">
         <i class="fa fa-pencil"></i>
-        博客全站共: <span class="post-count">3.2k</span> 字
+        博客全站共: <span class="post-count">4.3k</span> 字
       </span>
   </div>
   <!-- 新增访客统计代码 END-->
