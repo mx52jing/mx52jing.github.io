@@ -188,7 +188,7 @@ docker image ls -a
 
 这里面的虚悬镜像很多是中间层镜像，不要删除。
 
-## 删除镜像
+#### 删除镜像
 
 ```
 docker image rm [options] <name1> [<name2> ...]
@@ -259,7 +259,7 @@ docker ps 或者 docker container ls
 docker container stop [OPTIONS] CONTAINER [CONTAINER...]
 ```
 
-#####重启
+##### 重启
 
 ```
 通过docker container restart --help查看
@@ -291,10 +291,12 @@ docker export [OPTIONS] CONTAINER
 docker import [OPTIONS] file|URL|- [REPOSITORY[:TAG]]
 ```
 
-####删除容器
+#### 删除容器
 
 ```
-docker ps -a 或者 docker container ls -a 获取所有容器状况
+docker ps  或者 docker container ls  获取所有运行中的容器
+
+docker ps -a 或者 docker container ls -a 获取本机所有容器
 
 docker container rm ID(容器ID)
 
