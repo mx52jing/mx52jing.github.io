@@ -83,7 +83,10 @@ brew cask install docker
 
 点击下载[Stable](https://download.docker.com/mac/stable/Docker.dmg)或者[Edge](https://download.docker.com/mac/edge/Docker.dmg)版本for mac
 
-安装完成后在启动台找到类似**小鲸鱼**的图标，双击运行
+安装完成后在启动台找到如下**小鲸鱼**的图标，双击运行
+
+![](Docker笔记/dockerimage.png)
+
 
 #### 国内镜像加速
 
