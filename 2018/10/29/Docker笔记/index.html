@@ -116,14 +116,15 @@
 <meta property="og:site_name" content="哈萨Q&#39;s Blog">
 <meta property="og:description" content="基本概念Dokcer包括3个基本概念">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/10/29/Docker笔记/dockerimage.png">
 <meta property="og:image" content="http://yoursite.com/2018/10/29/Docker笔记/xuni.png">
 <meta property="og:image" content="http://yoursite.com/2018/10/29/Docker笔记/middle.png">
 <meta property="og:image" content="http://yoursite.com/2018/10/29/Docker笔记/dorit.png">
-<meta property="og:updated_time" content="2018-10-29T09:38:50.064Z">
+<meta property="og:updated_time" content="2018-10-29T12:02:16.596Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker笔记">
 <meta name="twitter:description" content="基本概念Dokcer包括3个基本概念">
-<meta name="twitter:image" content="http://yoursite.com/2018/10/29/Docker笔记/xuni.png">
+<meta name="twitter:image" content="http://yoursite.com/2018/10/29/Docker笔记/dockerimage.png">
 
 
 
@@ -343,7 +344,7 @@
                 
               
 
-              <time title="创建时间：2018-10-29 15:22:41 / 修改时间：17:38:50" itemprop="dateCreated datePublished" datetime="2018-10-29T15:22:41+08:00">2018-10-29</time>
+              <time title="创建时间：2018-10-29 15:22:41 / 修改时间：20:02:16" itemprop="dateCreated datePublished" datetime="2018-10-29T15:22:41+08:00">2018-10-29</time>
             
 
             
@@ -421,7 +422,8 @@
 <p><a href="https://docs.docker.com/toolbox/overview/" target="_blank" rel="noopener">Docker Toolbox安装地址</a></p>
 <h4 id="Homebrew安装"><a href="#Homebrew安装" class="headerlink" title="Homebrew安装"></a>Homebrew安装</h4><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">brew </span>cask <span class="keyword">install </span>docker</span><br></pre></td></tr></table></figure>
 <h4 id="手动安装"><a href="#手动安装" class="headerlink" title="手动安装"></a>手动安装</h4><p>点击下载<a href="https://download.docker.com/mac/stable/Docker.dmg" target="_blank" rel="noopener">Stable</a>或者<a href="https://download.docker.com/mac/edge/Docker.dmg" target="_blank" rel="noopener">Edge</a>版本for mac</p>
-<p>安装完成后在启动台找到类似<strong>小鲸鱼</strong>的图标，双击运行</p>
+<p>安装完成后在启动台找到如下<strong>小鲸鱼</strong>的图标，双击运行</p>
+<p><img src="/2018/10/29/Docker笔记/dockerimage.png" alt=""></p>
 <h4 id="国内镜像加速"><a href="#国内镜像加速" class="headerlink" title="国内镜像加速"></a>国内镜像加速</h4><figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">点击任务栏 =&gt; Perferences =&gt; Deamon =&gt; Registry mirrors =&gt; 添加https://registry.docker-cn.com =&gt; 点击Apply &amp; <span class="keyword">Restart</span></span><br></pre></td></tr></table></figure>
 <p>等待docker重启完毕，检查是否配置成功</p>
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker info</span><br><span class="line"></span><br><span class="line">如果看到：</span><br><span class="line"></span><br><span class="line">Registry Mirror<span class="variable">s:</span></span><br><span class="line"></span><br><span class="line"> http<span class="variable">s:</span>//registry.docker-<span class="keyword">cn</span>.<span class="keyword">com</span>/</span><br></pre></td></tr></table></figure>
