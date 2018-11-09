@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="哈萨Q&#39;s Blog">
 <meta property="og:description" content="Dockerfile命令以及解释1Dockerfile 是一个文本文件，其内包含了一条条的指令(Instruction)，每一条指令构建一层，因此每一条指令的内容，就是描述该层应当如何构建。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-31T05:53:49.571Z">
+<meta property="og:updated_time" content="2018-11-09T03:47:14.926Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker之Dockerfile">
 <meta name="twitter:description" content="Dockerfile命令以及解释1Dockerfile 是一个文本文件，其内包含了一条条的指令(Instruction)，每一条指令构建一层，因此每一条指令的内容，就是描述该层应当如何构建。">
@@ -356,7 +356,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-31 13:53:49" itemprop="dateModified" datetime="2018-10-31T13:53:49+08:00">2018-10-31</time>
+                <time title="修改时间：2018-11-09 11:47:14" itemprop="dateModified" datetime="2018-11-09T11:47:14+08:00">2018-11-09</time>
               
             
           </span>
@@ -428,8 +428,9 @@
 <p>2、exec格式：RUN [“可执行文件”, “参数1”, “参数2”]</p>
 <p><strong>注意：不要用下面这种写法</strong></p>
 <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> basicImage</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> operation1</span></span><br><span class="line"><span class="bash">RUN operation2</span></span><br><span class="line"><span class="bash">RUN operation3</span></span><br><span class="line"><span class="bash">...</span></span><br></pre></td></tr></table></figure>
+<p><strong>执行RUN命令的时候，会重写hosts文件，因此在RUN之前修改hosts文件是无效的</strong></p>
 <p><strong>Dockerfile 中每一个指令都会建立一层,RUN也是。每一个 RUN 的行为，就新建立一层，在其上执行这些命令，执行结束后，commit 这一层的修改，构成新的镜像</strong></p>
-<p>这种写法创建了3层甚至更多镜像，不提倡。</p>
+<p>这种写法创建了3层甚至更多镜像，导致镜像层数过多，而我们并不需要这么多层，所以不提倡,</p>
 <p>正确写法：</p>
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">FROM basicImage</span><br><span class="line"></span><br><span class="line">RUN  yum install -<span class="keyword">y</span> gcc gcc-<span class="keyword">c</span>++ <span class="keyword">make</span> <span class="keyword">perl</span>-devel \</span><br><span class="line">     &amp;&amp; <span class="built_in">mkdir</span> -<span class="keyword">p</span> /<span class="keyword">opt</span>/app/ /<span class="keyword">opt</span>/<span class="keyword">source</span>/ \</span><br><span class="line">     &amp;&amp; <span class="keyword">cd</span> /<span class="keyword">opt</span>/<span class="keyword">source</span> \</span><br><span class="line">     &amp;&amp; 其他操作</span><br></pre></td></tr></table></figure>
 <h4 id="COPY-复制文件"><a href="#COPY-复制文件" class="headerlink" title="COPY 复制文件"></a>COPY 复制文件</h4><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">COPY</span><span class="bash"> 源路径 目标路径</span></span><br><span class="line"><span class="bash">COPY [<span class="string">'源路径1'</span>,<span class="string">'源路径2'</span>, ..., <span class="string">'目标路径'</span>]</span></span><br></pre></td></tr></table></figure>
@@ -470,7 +471,8 @@
 <p>EXPOSE 和 docker run -p &lt;宿主端口&gt;:&lt;容器端口&gt; 区别：</p>
 <p><code>docker run -p &lt;宿主端口&gt;:&lt;容器端口&gt;：映射宿主端口和容器端口，就是将容器的对应端口服务公开给外界访问</code></p>
 <p><code>EXPOSE：仅仅是决定容器使用什么端口，不会自动在宿主端口进行端口映射</code></p>
-<h4 id="WORKDIR-指定工作目录"><a href="#WORKDIR-指定工作目录" class="headerlink" title="WORKDIR 指定工作目录"></a>WORKDIR 指定工作目录</h4><p>指定工作目录，为后续的 RUN、CMD、ENTRYPOINT 指令配置工作目录，以后各层的当前目录就是被指定的目录，如果目录不存在，WORKDIR会帮助我们建立目录。</p>
+<h4 id="WORKDIR-指定工作目录"><a href="#WORKDIR-指定工作目录" class="headerlink" title="WORKDIR 指定工作目录"></a>WORKDIR 指定工作目录</h4><p><strong>这个指定的目录很重要，会影响很多命令执行时所操作的目录，一定要写对</strong></p>
+<p>指定工作目录，为后续的 RUN、CMD、ENTRYPOINT 指令配置工作目录，以后各层的当前目录就是被指定的目录，如果目录不存在，WORKDIR会帮助我们建立目录。</p>
 <h4 id="build-构建镜像"><a href="#build-构建镜像" class="headerlink" title="build 构建镜像"></a>build 构建镜像</h4><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">docker</span> <span class="keyword">build </span>[OPTIONS] PATH <span class="title">| URL |</span> -</span><br><span class="line"></span><br><span class="line">例如：</span><br><span class="line"></span><br><span class="line"><span class="symbol">docker</span> <span class="keyword">build </span>-t nginx:<span class="built_in">v1</span> .</span><br></pre></td></tr></table></figure>
 <h5 id="镜像构建上下文"><a href="#镜像构建上下文" class="headerlink" title="镜像构建上下文"></a>镜像构建上下文</h5><p>docker build命令末尾会指定一个路径，通常为 . ,这个.的作用就是来<strong>指定上下文路径</strong>。</p>
 <p><strong>docker build这一构建命令的执行，实际上是使用远程调用形式在服务端（Docker 引擎）完成。在服务端构建时，有可能需要将本地的一些文件复制到镜像里面去，服务器要获取本地需要复制的文件就是要通过这个上下文路径，而这个路径是我们自己在build时指定的路径，docker build命令获取到这个路径之后，会将路径下内容打包，传给Docker引擎。这样Docker引擎收到这个上下文包之后，展开就会得到构建镜像所需文件。</strong></p>
@@ -749,7 +751,7 @@
       <!-- 博客字数统计 -->
       <span class="site-pv">
         <i class="fa fa-pencil"></i>
-        博客全站共: <span class="post-count">6.1k</span> 字
+        博客全站共: <span class="post-count">6.2k</span> 字
       </span>
   </div>
   <!-- 新增访客统计代码 END-->
