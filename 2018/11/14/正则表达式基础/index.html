@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="元字符   字符 作用     . 匹配除了换行符意以外的任意字符   \d 匹配数字   \w 匹配数字、汉字、字母、下划线的字符   \b 匹配单词的开头或者结尾，即单词的分界处，并不是匹配具体的一个什么分割字符，就是匹配这么个位置   \s 匹配任意的空白符，包括空格，制表符(Tab),换行符，中文全角空格   ^ 匹配字符串开始   $ 匹配字符串结束    字符转义如果要查找元字符本身的">
+  <meta name="description" content="写在前面工作中经常会用到正则表达式，来满足一些需求。正则表达式可以匹配一些符合规则的字符串、可以检查一个字符串中是否含有某个字符串、可以替换字符串中的内容。">
 <meta name="keywords" content="正则表达式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="正则表达式基础">
 <meta property="og:url" content="http://yoursite.com/2018/11/14/正则表达式基础/index.html">
 <meta property="og:site_name" content="哈萨Q&#39;s Blog">
-<meta property="og:description" content="元字符   字符 作用     . 匹配除了换行符意以外的任意字符   \d 匹配数字   \w 匹配数字、汉字、字母、下划线的字符   \b 匹配单词的开头或者结尾，即单词的分界处，并不是匹配具体的一个什么分割字符，就是匹配这么个位置   \s 匹配任意的空白符，包括空格，制表符(Tab),换行符，中文全角空格   ^ 匹配字符串开始   $ 匹配字符串结束    字符转义如果要查找元字符本身的">
+<meta property="og:description" content="写在前面工作中经常会用到正则表达式，来满足一些需求。正则表达式可以匹配一些符合规则的字符串、可以检查一个字符串中是否含有某个字符串、可以替换字符串中的内容。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-14T11:35:24.295Z">
+<meta property="og:updated_time" content="2018-11-14T12:29:20.401Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正则表达式基础">
-<meta name="twitter:description" content="元字符   字符 作用     . 匹配除了换行符意以外的任意字符   \d 匹配数字   \w 匹配数字、汉字、字母、下划线的字符   \b 匹配单词的开头或者结尾，即单词的分界处，并不是匹配具体的一个什么分割字符，就是匹配这么个位置   \s 匹配任意的空白符，包括空格，制表符(Tab),换行符，中文全角空格   ^ 匹配字符串开始   $ 匹配字符串结束    字符转义如果要查找元字符本身的">
+<meta name="twitter:description" content="写在前面工作中经常会用到正则表达式，来满足一些需求。正则表达式可以匹配一些符合规则的字符串、可以检查一个字符串中是否含有某个字符串、可以替换字符串中的内容。">
 
 
 
@@ -339,7 +339,7 @@
                 
               
 
-              <time title="创建时间：2018-11-14 18:22:34 / 修改时间：19:35:24" itemprop="dateCreated datePublished" datetime="2018-11-14T18:22:34+08:00">2018-11-14</time>
+              <time title="创建时间：2018-11-14 18:22:34 / 修改时间：20:29:20" itemprop="dateCreated datePublished" datetime="2018-11-14T18:22:34+08:00">2018-11-14</time>
             
 
             
@@ -403,7 +403,9 @@
       
 
       
-        <h3 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h3><table>
+        <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>工作中经常会用到正则表达式，来满足一些需求。正则表达式可以匹配一些符合规则的字符串、可以检查一个字符串中是否含有某个字符串、可以替换字符串中的内容。</p>
+<a id="more"></a>
+<h3 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h3><table>
 <thead>
 <tr>
 <th style="text-align:center">字符</th>
@@ -421,7 +423,7 @@
 </tr>
 <tr>
 <td style="text-align:center">\w</td>
-<td style="text-align:left">匹配数字、汉字、字母、下划线的字符</td>
+<td style="text-align:left">匹配数字、字母、下划线,等价于[a-zA-Z0-9_]</td>
 </tr>
 <tr>
 <td style="text-align:center">\b</td>
@@ -442,7 +444,7 @@
 </tbody>
 </table>
 <h3 id="字符转义"><a href="#字符转义" class="headerlink" title="字符转义"></a>字符转义</h3><p>如果要查找元字符本身的话，无法直接指定，需要转义。可以使用<code>\</code>来进行转义。</p>
-<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">. </span>表示除了空格以外的任意字符，而 \. 就表示一个 .</span><br></pre></td></tr></table></figure>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">. 表示除了空格以外的任意字符，而 <span class="string">\.</span> 就表示一个 .</span><br><span class="line"></span><br><span class="line">+、?、* 表示数量限制，但是加上<span class="string">\</span> 就表示本身的加号、问号、星号</span><br></pre></td></tr></table></figure>
 <h3 id="重复"><a href="#重复" class="headerlink" title="重复"></a>重复</h3><table>
 <thead>
 <tr>
@@ -487,7 +489,7 @@
 <tbody>
 <tr>
 <td style="text-align:center">\W</td>
-<td style="text-align:left">匹配不是数字、汉字、、字母、下划线的字符</td>
+<td style="text-align:left">匹配不是数字、字母、下划线的字符</td>
 </tr>
 <tr>
 <td style="text-align:center">\D</td>
@@ -502,11 +504,11 @@
 <td style="text-align:left">匹配不是单词开头或结束的位置</td>
 </tr>
 <tr>
-<td style="text-align:center">[\^a]</td>
+<td style="text-align:center">[^a]</td>
 <td style="text-align:left">匹配除了a以外的任意字符</td>
 </tr>
 <tr>
-<td style="text-align:center">[\^abcd]</td>
+<td style="text-align:center">[^abcd]或者[^a-d]</td>
 <td style="text-align:left">匹配除了abcd这几个字母以外的任意字符</td>
 </tr>
 </tbody>
@@ -544,24 +546,55 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">(?=exp)</td>
-<td style="text-align:left">匹配exp前面的位置 (匹配内容的后面是exp)</td>
+<td style="text-align:center">x(?=exp)</td>
+<td style="text-align:left">匹配exp前面的位置 (匹配x,前提是x后面是exp)</td>
 </tr>
 <tr>
-<td style="text-align:center">(?!exp)</td>
-<td style="text-align:left">匹配后面不是exp的位置 (匹配内容的后面不是exp)</td>
+<td style="text-align:center">x(?!exp)</td>
+<td style="text-align:left">匹配后面不是exp的位置 (匹配x,前提是x的后面不是exp)</td>
 </tr>
 <tr>
-<td style="text-align:center">(?&lt;=exp)</td>
-<td style="text-align:left">匹配exp后面的位置 (匹配内容的前面是exp)</td>
+<td style="text-align:center">x(?&lt;=exp)</td>
+<td style="text-align:left">匹配exp后面的位置 (匹配x,前提是x的前面是exp)</td>
 </tr>
 <tr>
-<td style="text-align:center">(?&lt;!exp)</td>
-<td style="text-align:left">匹配前面不是exp的位置 (匹配内容的前面不是exp)</td>
+<td style="text-align:center">x(?&lt;!exp)</td>
+<td style="text-align:left">匹配前面不是exp的位置 (匹配x,前提是x的前面不是exp)</td>
 </tr>
 </tbody>
 </table>
 <h4 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h4><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(?<span class="meta">#comment)</span></span><br><span class="line"></span><br><span class="line">这种类型的分组不对正则表达式的处理产生任何影响，用于提供注释让人阅读</span><br></pre></td></tr></table></figure>
+<h3 id="贪婪和懒惰"><a href="#贪婪和懒惰" class="headerlink" title="贪婪和懒惰"></a>贪婪和懒惰</h3><p><code>当正则表达式中包含能接受重复的限定符时，通常的行为是（在使整个表达式能得到匹配的前提下）匹配尽可能多的字符。以这个表达式为例：a.*b，它将会匹配最长的以a开始，以b结束的字符串。如果用它来搜索aabab的话，它会匹配整个字符串aabab。这被称为贪婪匹配。</code></p>
+<h4 id="懒惰限定符"><a href="#懒惰限定符" class="headerlink" title="懒惰限定符"></a>懒惰限定符</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">表达式</th>
+<th style="text-align:left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">*?</td>
+<td style="text-align:left">重复任意次，但尽可能少重复</td>
+</tr>
+<tr>
+<td style="text-align:center">+?</td>
+<td style="text-align:left">重复1次或更多次，但尽可能少重复</td>
+</tr>
+<tr>
+<td style="text-align:center">??</td>
+<td style="text-align:left">重复0次或1次，但尽可能少重复</td>
+</tr>
+<tr>
+<td style="text-align:center">{m, n}?</td>
+<td style="text-align:left">重复n到m次，但尽可能少重复</td>
+</tr>
+<tr>
+<td style="text-align:center">{n,}</td>
+<td style="text-align:left">重复n次以上，但尽可能少重复</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
@@ -797,7 +830,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#元字符"><span class="nav-number">1.</span> <span class="nav-text">元字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符转义"><span class="nav-number">2.</span> <span class="nav-text">字符转义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重复"><span class="nav-number">3.</span> <span class="nav-text">重复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反义字符"><span class="nav-number">4.</span> <span class="nav-text">反义字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分组"><span class="nav-number">5.</span> <span class="nav-text">分组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#捕获"><span class="nav-number">5.1.</span> <span class="nav-text">捕获</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#零宽断言"><span class="nav-number">5.2.</span> <span class="nav-text">零宽断言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注释"><span class="nav-number">5.3.</span> <span class="nav-text">注释</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元字符"><span class="nav-number">2.</span> <span class="nav-text">元字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符转义"><span class="nav-number">3.</span> <span class="nav-text">字符转义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重复"><span class="nav-number">4.</span> <span class="nav-text">重复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反义字符"><span class="nav-number">5.</span> <span class="nav-text">反义字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分组"><span class="nav-number">6.</span> <span class="nav-text">分组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#捕获"><span class="nav-number">6.1.</span> <span class="nav-text">捕获</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#零宽断言"><span class="nav-number">6.2.</span> <span class="nav-text">零宽断言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注释"><span class="nav-number">6.3.</span> <span class="nav-text">注释</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#贪婪和懒惰"><span class="nav-number">7.</span> <span class="nav-text">贪婪和懒惰</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#懒惰限定符"><span class="nav-number">7.1.</span> <span class="nav-text">懒惰限定符</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -841,7 +874,7 @@
       <!-- 博客字数统计 -->
       <span class="site-pv">
         <i class="fa fa-pencil"></i>
-        博客全站共: <span class="post-count">6.8k</span> 字
+        博客全站共: <span class="post-count">7.1k</span> 字
       </span>
   </div>
   <!-- 新增访客统计代码 END-->

@@ -342,7 +342,7 @@
                 
               
 
-              <time title="创建时间：2018-11-14 18:22:34 / 修改时间：19:35:24" itemprop="dateCreated datePublished" datetime="2018-11-14T18:22:34+08:00">2018-11-14</time>
+              <time title="创建时间：2018-11-14 18:22:34 / 修改时间：20:29:20" itemprop="dateCreated datePublished" datetime="2018-11-14T18:22:34+08:00">2018-11-14</time>
             
 
             
@@ -399,168 +399,14 @@
 
       
         
-          
-            <h3 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h3><table>
-<thead>
-<tr>
-<th style="text-align:center">字符</th>
-<th style="text-align:left">作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">.</td>
-<td style="text-align:left">匹配除了换行符意以外的任意字符</td>
-</tr>
-<tr>
-<td style="text-align:center">\d</td>
-<td style="text-align:left">匹配数字</td>
-</tr>
-<tr>
-<td style="text-align:center">\w</td>
-<td style="text-align:left">匹配数字、汉字、字母、下划线的字符</td>
-</tr>
-<tr>
-<td style="text-align:center">\b</td>
-<td style="text-align:left">匹配单词的开头或者结尾，即单词的分界处，并不是匹配具体的一个什么分割字符，就是匹配这么个位置</td>
-</tr>
-<tr>
-<td style="text-align:center">\s</td>
-<td style="text-align:left">匹配任意的空白符，包括空格，制表符(Tab),换行符，中文全角空格</td>
-</tr>
-<tr>
-<td style="text-align:center">^</td>
-<td style="text-align:left">匹配字符串开始</td>
-</tr>
-<tr>
-<td style="text-align:center">$</td>
-<td style="text-align:left">匹配字符串结束</td>
-</tr>
-</tbody>
-</table>
-<h3 id="字符转义"><a href="#字符转义" class="headerlink" title="字符转义"></a>字符转义</h3><p>如果要查找元字符本身的话，无法直接指定，需要转义。可以使用<code>\</code>来进行转义。</p>
-<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">. </span>表示除了空格以外的任意字符，而 \. 就表示一个 .</span><br></pre></td></tr></table></figure>
-<h3 id="重复"><a href="#重复" class="headerlink" title="重复"></a>重复</h3><table>
-<thead>
-<tr>
-<th style="text-align:center">字符</th>
-<th style="text-align:left">作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">*</td>
-<td style="text-align:left">重复零次或者多次</td>
-</tr>
-<tr>
-<td style="text-align:center">?</td>
-<td style="text-align:left">重复零次或者一次</td>
-</tr>
-<tr>
-<td style="text-align:center">+</td>
-<td style="text-align:left">重复一次或者多次</td>
-</tr>
-<tr>
-<td style="text-align:center">{n}</td>
-<td style="text-align:left">重复n次</td>
-</tr>
-<tr>
-<td style="text-align:center">{m,n}</td>
-<td style="text-align:left">重复m-n次</td>
-</tr>
-<tr>
-<td style="text-align:center">{n,}</td>
-<td style="text-align:left">重复n次或者更多次</td>
-</tr>
-</tbody>
-</table>
-<h3 id="反义字符"><a href="#反义字符" class="headerlink" title="反义字符"></a>反义字符</h3><table>
-<thead>
-<tr>
-<th style="text-align:center">字符</th>
-<th style="text-align:left">作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">\W</td>
-<td style="text-align:left">匹配不是数字、汉字、、字母、下划线的字符</td>
-</tr>
-<tr>
-<td style="text-align:center">\D</td>
-<td style="text-align:left">匹配任意非数字的字符</td>
-</tr>
-<tr>
-<td style="text-align:center">\S</td>
-<td style="text-align:left">匹配任意不是空白符的字符</td>
-</tr>
-<tr>
-<td style="text-align:center">\B</td>
-<td style="text-align:left">匹配不是单词开头或结束的位置</td>
-</tr>
-<tr>
-<td style="text-align:center">[\^a]</td>
-<td style="text-align:left">匹配除了a以外的任意字符</td>
-</tr>
-<tr>
-<td style="text-align:center">[\^abcd]</td>
-<td style="text-align:left">匹配除了abcd这几个字母以外的任意字符</td>
-</tr>
-</tbody>
-</table>
-<h3 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h3><p>通过()指定子表达式。</p>
-<h4 id="捕获"><a href="#捕获" class="headerlink" title="捕获"></a>捕获</h4><table>
-<thead>
-<tr>
-<th style="text-align:center">表达式</th>
-<th style="text-align:left">作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">(exp)</td>
-<td style="text-align:left">匹配exp,并捕获文本到自动命名的组里</td>
-</tr>
-<tr>
-<td style="text-align:center">(?\<name>exp)</name></td>
-<td style="text-align:left">匹配exp,并捕获文本到名称为name的组里，也可以写成(?’name’exp)</td>
-</tr>
-<tr>
-<td style="text-align:center">(?:exp)</td>
-<td style="text-align:left">配aaa,不捕获匹配的文本，也不给此分组分配组号</td>
-</tr>
-</tbody>
-</table>
-<h4 id="零宽断言"><a href="#零宽断言" class="headerlink" title="零宽断言"></a>零宽断言</h4><p>断言：声明一个应该为真的事实。正则表达式中只有断言正确才会继续匹配。我们要捕获的内容前后必须是某些特定的内容，但又不捕获这些特定类容的时候，使用零宽断言</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">表达式</th>
-<th style="text-align:left">作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">(?=exp)</td>
-<td style="text-align:left">匹配exp前面的位置 (匹配内容的后面是exp)</td>
-</tr>
-<tr>
-<td style="text-align:center">(?!exp)</td>
-<td style="text-align:left">匹配后面不是exp的位置 (匹配内容的后面不是exp)</td>
-</tr>
-<tr>
-<td style="text-align:center">(?&lt;=exp)</td>
-<td style="text-align:left">匹配exp后面的位置 (匹配内容的前面是exp)</td>
-</tr>
-<tr>
-<td style="text-align:center">(?&lt;!exp)</td>
-<td style="text-align:left">匹配前面不是exp的位置 (匹配内容的前面不是exp)</td>
-</tr>
-</tbody>
-</table>
-<h4 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h4><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(?<span class="meta">#comment)</span></span><br><span class="line"></span><br><span class="line">这种类型的分组不对正则表达式的处理产生任何影响，用于提供注释让人阅读</span><br></pre></td></tr></table></figure>
-
-          
+          <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>工作中经常会用到正则表达式，来满足一些需求。正则表达式可以匹配一些符合规则的字符串、可以检查一个字符串中是否含有某个字符串、可以替换字符串中的内容。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/14/正则表达式基础/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2143,7 +1989,7 @@
       <!-- 博客字数统计 -->
       <span class="site-pv">
         <i class="fa fa-pencil"></i>
-        博客全站共: <span class="post-count">6.8k</span> 字
+        博客全站共: <span class="post-count">7.1k</span> 字
       </span>
   </div>
   <!-- 新增访客统计代码 END-->
