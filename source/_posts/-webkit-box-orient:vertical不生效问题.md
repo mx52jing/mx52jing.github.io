@@ -26,7 +26,7 @@ tags:
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 2; // 要显示的行数
   -webkit-box-orient: vertical;
 }
 
@@ -46,7 +46,7 @@ tags:
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 2; // 要显示的行数
   /*! autoprefixer: off */
   -webkit-box-orient: vertical;
 }
