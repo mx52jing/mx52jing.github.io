@@ -242,6 +242,8 @@ docker image rm sha256:b73f527d86e3461fd652f62cf47e7b375196063bbbd503e853af5be16
 
 ##### 启动已终止容器 docker container start
 
+使用start命令的前提是容器【已经生成】并且【已经停止运行】
+
 ```
 通过docker container start --help查看
 
