@@ -108,25 +108,28 @@
 
 
 
-  <meta name="description" content="写在前面工作中经常会用到正则表达式，来满足一些需求。正则表达式可以匹配一些符合规则的字符串、可以检查一个字符串中是否含有某个字符串、可以替换字符串中的内容。">
-<meta name="keywords" content="正则表达式">
+  <meta name="description" content="缓存作用 可以减少不必要的数据传输 可以提高访问速度 可以减少服务器的负担， 提高网站性能">
+<meta name="keywords" content="HTTP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="正则表达式基础">
-<meta property="og:url" content="http://yoursite.com/2018/11/14/正则表达式基础/index.html">
+<meta property="og:title" content="HTTP缓存">
+<meta property="og:url" content="http://yoursite.com/2019/04/22/HTTP缓存/index.html">
 <meta property="og:site_name" content="哈萨Q&#39;s Blog">
-<meta property="og:description" content="写在前面工作中经常会用到正则表达式，来满足一些需求。正则表达式可以匹配一些符合规则的字符串、可以检查一个字符串中是否含有某个字符串、可以替换字符串中的内容。">
+<meta property="og:description" content="缓存作用 可以减少不必要的数据传输 可以提高访问速度 可以减少服务器的负担， 提高网站性能">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-14T12:29:20.401Z">
+<meta property="og:image" content="http://yoursite.com/2019/04/22/HTTP缓存/qiang-cache.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/22/HTTP缓存/expires.png">
+<meta property="og:updated_time" content="2019-04-22T14:53:24.861Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="正则表达式基础">
-<meta name="twitter:description" content="写在前面工作中经常会用到正则表达式，来满足一些需求。正则表达式可以匹配一些符合规则的字符串、可以检查一个字符串中是否含有某个字符串、可以替换字符串中的内容。">
+<meta name="twitter:title" content="HTTP缓存">
+<meta name="twitter:description" content="缓存作用 可以减少不必要的数据传输 可以提高访问速度 可以减少服务器的负担， 提高网站性能">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/22/HTTP缓存/qiang-cache.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/11/14/正则表达式基础/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/04/22/HTTP缓存/"/>
 
 
 
@@ -136,7 +139,7 @@
   };
 </script>
 
-  <title>正则表达式基础 | 哈萨Q's Blog</title>
+  <title>HTTP缓存 | 哈萨Q's Blog</title>
   
 
 
@@ -297,7 +300,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/14/正则表达式基础/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/22/HTTP缓存/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="mx52jing">
@@ -314,7 +317,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">正则表达式基础
+          <h1 class="post-title" itemprop="name headline">HTTP缓存
               
             
           </h1>
@@ -339,7 +342,7 @@
                 
               
 
-              <time title="创建时间：2018-11-14 18:22:34 / 修改时间：20:29:20" itemprop="dateCreated datePublished" datetime="2018-11-14T18:22:34+08:00">2018-11-14</time>
+              <time title="创建时间：2019-04-22 22:13:19 / 修改时间：22:53:24" itemprop="dateCreated datePublished" datetime="2019-04-22T22:13:19+08:00">2019-04-22</time>
             
 
             
@@ -361,7 +364,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/正则表达式/" itemprop="url" rel="index"><span itemprop="name">正则表达式</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/HTTP/" itemprop="url" rel="index"><span itemprop="name">HTTP</span></a></span>
 
                 
                 
@@ -403,198 +406,22 @@
       
 
       
-        <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>工作中经常会用到正则表达式，来满足一些需求。正则表达式可以匹配一些符合规则的字符串、可以检查一个字符串中是否含有某个字符串、可以替换字符串中的内容。</p>
+        <h2 id="缓存作用"><a href="#缓存作用" class="headerlink" title="缓存作用"></a>缓存作用</h2><ul>
+<li>可以减少不必要的数据传输</li>
+<li>可以提高访问速度</li>
+<li>可以减少服务器的负担， 提高网站性能</li>
+</ul>
 <a id="more"></a>
-<h3 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h3><table>
-<thead>
-<tr>
-<th style="text-align:center">字符</th>
-<th style="text-align:left">作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">.</td>
-<td style="text-align:left">匹配除了换行符意以外的任意字符</td>
-</tr>
-<tr>
-<td style="text-align:center">\d</td>
-<td style="text-align:left">匹配数字</td>
-</tr>
-<tr>
-<td style="text-align:center">\w</td>
-<td style="text-align:left">匹配数字、字母、下划线,等价于[a-zA-Z0-9_]</td>
-</tr>
-<tr>
-<td style="text-align:center">\b</td>
-<td style="text-align:left">匹配单词的开头或者结尾，即单词的分界处，并不是匹配具体的一个什么分割字符，就是匹配这么个位置</td>
-</tr>
-<tr>
-<td style="text-align:center">\s</td>
-<td style="text-align:left">匹配任意的空白符，包括空格，制表符(Tab),换行符，中文全角空格</td>
-</tr>
-<tr>
-<td style="text-align:center">^</td>
-<td style="text-align:left">匹配字符串开始</td>
-</tr>
-<tr>
-<td style="text-align:center">$</td>
-<td style="text-align:left">匹配字符串结束</td>
-</tr>
-</tbody>
-</table>
-<h3 id="字符转义"><a href="#字符转义" class="headerlink" title="字符转义"></a>字符转义</h3><p>如果要查找元字符本身的话，无法直接指定，需要转义。可以使用<code>\</code>来进行转义。</p>
-<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">. 表示除了空格以外的任意字符，而 <span class="string">\.</span> 就表示一个 .</span><br><span class="line"></span><br><span class="line">+、?、* 表示数量限制，但是加上<span class="string">\</span> 就表示本身的加号、问号、星号</span><br></pre></td></tr></table></figure>
-<h3 id="重复"><a href="#重复" class="headerlink" title="重复"></a>重复</h3><table>
-<thead>
-<tr>
-<th style="text-align:center">字符</th>
-<th style="text-align:left">作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">*</td>
-<td style="text-align:left">重复零次或者多次</td>
-</tr>
-<tr>
-<td style="text-align:center">?</td>
-<td style="text-align:left">重复零次或者一次</td>
-</tr>
-<tr>
-<td style="text-align:center">+</td>
-<td style="text-align:left">重复一次或者多次</td>
-</tr>
-<tr>
-<td style="text-align:center">{n}</td>
-<td style="text-align:left">重复n次</td>
-</tr>
-<tr>
-<td style="text-align:center">{m,n}</td>
-<td style="text-align:left">重复m-n次</td>
-</tr>
-<tr>
-<td style="text-align:center">{n,}</td>
-<td style="text-align:left">重复n次或者更多次</td>
-</tr>
-</tbody>
-</table>
-<h3 id="反义字符"><a href="#反义字符" class="headerlink" title="反义字符"></a>反义字符</h3><table>
-<thead>
-<tr>
-<th style="text-align:center">字符</th>
-<th style="text-align:left">作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">\W</td>
-<td style="text-align:left">匹配不是数字、字母、下划线的字符</td>
-</tr>
-<tr>
-<td style="text-align:center">\D</td>
-<td style="text-align:left">匹配任意非数字的字符</td>
-</tr>
-<tr>
-<td style="text-align:center">\S</td>
-<td style="text-align:left">匹配任意不是空白符的字符</td>
-</tr>
-<tr>
-<td style="text-align:center">\B</td>
-<td style="text-align:left">匹配不是单词开头或结束的位置</td>
-</tr>
-<tr>
-<td style="text-align:center">[^a]</td>
-<td style="text-align:left">匹配除了a以外的任意字符</td>
-</tr>
-<tr>
-<td style="text-align:center">[^abcd]或者[^a-d]</td>
-<td style="text-align:left">匹配除了abcd这几个字母以外的任意字符</td>
-</tr>
-</tbody>
-</table>
-<h3 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h3><p>通过()指定子表达式。</p>
-<h4 id="捕获"><a href="#捕获" class="headerlink" title="捕获"></a>捕获</h4><table>
-<thead>
-<tr>
-<th style="text-align:center">表达式</th>
-<th style="text-align:left">作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">(exp)</td>
-<td style="text-align:left">匹配exp,并捕获文本到自动命名的组里</td>
-</tr>
-<tr>
-<td style="text-align:center">(?\<name>exp)</name></td>
-<td style="text-align:left">匹配exp,并捕获文本到名称为name的组里，也可以写成(?’name’exp)</td>
-</tr>
-<tr>
-<td style="text-align:center">(?:exp)</td>
-<td style="text-align:left">配aaa,不捕获匹配的文本，也不给此分组分配组号</td>
-</tr>
-</tbody>
-</table>
-<h4 id="零宽断言"><a href="#零宽断言" class="headerlink" title="零宽断言"></a>零宽断言</h4><p>断言：声明一个应该为真的事实。正则表达式中只有断言正确才会继续匹配。我们要捕获的内容前后必须是某些特定的内容，但又不捕获这些特定类容的时候，使用零宽断言</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">表达式</th>
-<th style="text-align:left">作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">x(?=exp)</td>
-<td style="text-align:left">匹配exp前面的位置 (匹配x,前提是x后面是exp)</td>
-</tr>
-<tr>
-<td style="text-align:center">x(?!exp)</td>
-<td style="text-align:left">匹配后面不是exp的位置 (匹配x,前提是x的后面不是exp)</td>
-</tr>
-<tr>
-<td style="text-align:center">x(?&lt;=exp)</td>
-<td style="text-align:left">匹配exp后面的位置 (匹配x,前提是x的前面是exp)</td>
-</tr>
-<tr>
-<td style="text-align:center">x(?&lt;!exp)</td>
-<td style="text-align:left">匹配前面不是exp的位置 (匹配x,前提是x的前面不是exp)</td>
-</tr>
-</tbody>
-</table>
-<h4 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h4><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(?<span class="meta">#comment)</span></span><br><span class="line"></span><br><span class="line">这种类型的分组不对正则表达式的处理产生任何影响，用于提供注释让人阅读</span><br></pre></td></tr></table></figure>
-<h3 id="贪婪和懒惰"><a href="#贪婪和懒惰" class="headerlink" title="贪婪和懒惰"></a>贪婪和懒惰</h3><p><code>当正则表达式中包含能接受重复的限定符时，通常的行为是（在使整个表达式能得到匹配的前提下）匹配尽可能多的字符。以这个表达式为例：a.*b，它将会匹配最长的以a开始，以b结束的字符串。如果用它来搜索aabab的话，它会匹配整个字符串aabab。这被称为贪婪匹配。</code></p>
-<h4 id="懒惰限定符"><a href="#懒惰限定符" class="headerlink" title="懒惰限定符"></a>懒惰限定符</h4><table>
-<thead>
-<tr>
-<th style="text-align:center">表达式</th>
-<th style="text-align:left">作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">*?</td>
-<td style="text-align:left">重复任意次，但尽可能少重复</td>
-</tr>
-<tr>
-<td style="text-align:center">+?</td>
-<td style="text-align:left">重复1次或更多次，但尽可能少重复</td>
-</tr>
-<tr>
-<td style="text-align:center">??</td>
-<td style="text-align:left">重复0次或1次，但尽可能少重复</td>
-</tr>
-<tr>
-<td style="text-align:center">{m, n}?</td>
-<td style="text-align:left">重复n到m次，但尽可能少重复</td>
-</tr>
-<tr>
-<td style="text-align:center">{n,}</td>
-<td style="text-align:left">重复n次以上，但尽可能少重复</td>
-</tr>
-</tbody>
-</table>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><p>缓存主要分为<code>强缓存</code>和<code>协商缓存</code> </p>
+<p><code>强缓存</code>的优先级比较高，如果命中强制缓存，那么客户端就不用再和服务器发生交互，如果没有命中强制缓存，才会走协商缓存。协商缓存不管是否命中，都需要与服务端发生交互。</p>
+<h3 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h3><p>强缓存是否命中是根据http头中的<code>Expires</code>和<code>Cache-Control</code>两个字段来控制的，当请求发出时，浏览器会根据<code>expires</code>和<code>cache-control</code>判断请求资源是否命中强缓存，如果命中，就无须再向服务器交互，直接从缓存中获取资源。</p>
+<p><strong>命中强缓存的情况下，返回的HTTP状态码为200</strong></p>
+<p>如下图：</p>
+<p><img src="/2019/04/22/HTTP缓存/qiang-cache.png" alt=""></p>
+<h4 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h4><p>Expires是http1.0的产物，服务器返回的响应头中包含expires字段，表明了缓存的过期时间，等到我们再次向服务端发请求时，浏览器就会将本地时间和expires字段返回的时间进行对比，如果本地时间小于expires字段的时间，那么就会直接从缓存中读取数据，不再与服务器交互。</p>
+<p>如下图，可以清晰看到返回的expires字段，表明了一个过期时间戳</p>
+<p><img src="/2019/04/22/HTTP缓存/expires.png" alt=""></p>
+<p>Expires存在一个很明显的弊端，那就是完全是依赖<code>时间戳</code>来比较过期时间，如果我们故意修改本地时间，或者服务端和客户端的时间设置不一样的情况下，expires将无法达到预期作用。</p>
 
       
     </div>
@@ -644,7 +471,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/正则表达式/" rel="tag"># 正则表达式</a>
+            <a href="/tags/HTTP/" rel="tag"># HTTP</a>
           
         </div>
       
@@ -657,8 +484,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/30/Docker之Dockerfile/" rel="next" title="Docker之Dockerfile">
-                <i class="fa fa-chevron-left"></i> Docker之Dockerfile
+              <a href="/2018/11/19/React的PureComponent/" rel="next" title="React的PureComponent">
+                <i class="fa fa-chevron-left"></i> React的PureComponent
               </a>
             
           </div>
@@ -666,10 +493,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/19/React的PureComponent/" rel="prev" title="React的PureComponent">
-                React的PureComponent <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -842,7 +665,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元字符"><span class="nav-number">2.</span> <span class="nav-text">元字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符转义"><span class="nav-number">3.</span> <span class="nav-text">字符转义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重复"><span class="nav-number">4.</span> <span class="nav-text">重复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反义字符"><span class="nav-number">5.</span> <span class="nav-text">反义字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分组"><span class="nav-number">6.</span> <span class="nav-text">分组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#捕获"><span class="nav-number">6.1.</span> <span class="nav-text">捕获</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#零宽断言"><span class="nav-number">6.2.</span> <span class="nav-text">零宽断言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注释"><span class="nav-number">6.3.</span> <span class="nav-text">注释</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#贪婪和懒惰"><span class="nav-number">7.</span> <span class="nav-text">贪婪和懒惰</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#懒惰限定符"><span class="nav-number">7.1.</span> <span class="nav-text">懒惰限定符</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存作用"><span class="nav-number">1.</span> <span class="nav-text">缓存作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分类"><span class="nav-number">2.</span> <span class="nav-text">分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#强缓存"><span class="nav-number">2.1.</span> <span class="nav-text">强缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Expires"><span class="nav-number">2.1.1.</span> <span class="nav-text">Expires</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
