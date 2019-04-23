@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c0ec2800-363c-452d-98fd-a56121e7ea85" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/HTTP缓存.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/HTTP缓存.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Docker之Dockerfile.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/Docker之Dockerfile.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/next" beforeDir="false" afterPath="$PROJECT_DIR$/themes/next" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/next/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/next/_config.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/next/layout/_layout.swig" beforeDir="false" afterPath="$PROJECT_DIR$/themes/next/layout/_layout.swig" afterDir="false" />
@@ -24,11 +24,11 @@
     <session id="282860555">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
-          <entry key="project.open.time.0" value="1" />
+          <entry key="project.closed" value="4" />
+          <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.6" value="1" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -37,7 +37,7 @@
           <entry key="ico" value="1" />
           <entry key="jpg" value="4" />
           <entry key="json" value="1" />
-          <entry key="md" value="13" />
+          <entry key="md" value="14" />
           <entry key="png" value="2" />
           <entry key="svg" value="2" />
         </counts>
@@ -46,31 +46,31 @@
         <counts>
           <entry key="Image" value="10" />
           <entry key="JSON" value="1" />
-          <entry key="Markdown" value="12" />
+          <entry key="Markdown" value="13" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="SVG" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="md" value="2344" />
+          <entry key="md" value="2609" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Markdown" value="2344" />
+          <entry key="Markdown" value="2609" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/source/_posts/HTTP缓存.md">
+        <entry file="file://$PROJECT_DIR$/source/_posts/Docker之Dockerfile.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="829">
-                <caret line="104" column="22" selection-start-line="104" selection-start-column="22" selection-end-line="104" selection-end-column="22" />
+              <first_editor relative-caret-position="686">
+                <caret line="231" lean-forward="true" selection-start-line="231" selection-end-line="231" />
               </first_editor>
               <second_editor />
             </state>
@@ -83,6 +83,8 @@
     <findStrings>
       <find>强制</find>
       <find>协商缓存</find>
+      <find>cmd</find>
+      <find>WORK</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -91,8 +93,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/source/_posts/Docker之Dockerfile.md" />
         <option value="$PROJECT_DIR$/source/_posts/HTTP缓存.md" />
+        <option value="$PROJECT_DIR$/source/_posts/Docker之Dockerfile.md" />
       </list>
     </option>
   </component>
@@ -112,7 +114,7 @@
       <path value="$PROJECT_DIR$/themes/next/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
     <option name="x" value="578" />
     <option name="y" value="23" />
     <option name="width" value="1056" />
@@ -144,13 +146,6 @@
               <item name="myBlog" type="462c0819:PsiDirectoryNode" />
               <item name="source" type="462c0819:PsiDirectoryNode" />
               <item name="_posts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="myBlog" type="b2602c69:ProjectViewProjectNode" />
-              <item name="myBlog" type="462c0819:PsiDirectoryNode" />
-              <item name="source" type="462c0819:PsiDirectoryNode" />
-              <item name="_posts" type="462c0819:PsiDirectoryNode" />
-              <item name="HTTP缓存" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -195,18 +190,19 @@
       <workItem from="1542177667330" duration="240000" />
       <workItem from="1542177980971" duration="366000" />
       <workItem from="1555942329985" duration="2536000" />
-      <workItem from="1555988908846" duration="5422000" />
+      <workItem from="1555988908846" duration="5505000" />
+      <workItem from="1556014308272" duration="1740000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8564000" />
+    <option name="totallyTimeSpent" value="10387000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <frame x="0" y="0" width="1680" height="1050" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19951779" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.19951779" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -271,21 +267,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/_posts/Docker之Dockerfile.md">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="-2251">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="-5669">
-            <caret line="6" column="5" lean-forward="true" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/_posts/小程序其他.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -342,8 +323,23 @@
     <entry file="file://$PROJECT_DIR$/source/_posts/HTTP缓存.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="829">
-            <caret line="104" column="22" selection-start-line="104" selection-start-column="22" selection-end-line="104" selection-end-column="22" />
+          <first_editor relative-caret-position="336">
+            <caret line="87" column="13" selection-start-line="87" selection-start-column="13" selection-end-line="87" selection-end-column="13" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/Docker之Dockerfile.md">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="-2251">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="686">
+            <caret line="231" lean-forward="true" selection-start-line="231" selection-end-line="231" />
           </first_editor>
           <second_editor />
         </state>

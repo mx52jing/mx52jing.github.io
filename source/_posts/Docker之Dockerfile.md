@@ -153,6 +153,28 @@ CMD ["aaa"]
 ```
 aaa就会作为参数传到执行的xxx.sh内
 
+或者是
+
+```
+FROM centos
+
+RUN  yum install ...
+
+...
+
+ENTRYPOINT ["xxx.sh"]
+```
+
+比如将这个修改build成demo:v1
+```
+docker build -t demo:v1 .
+```
+然后在命令行执行
+```
+docker run --name demo_server demo:v1 CMD
+```
+此时的CMD也会作为参数传递给`ENTRYPOINT`运行的命令
+
 
 #### ENV 设置环境变量
 
@@ -178,6 +200,15 @@ ENV VERSON 2.2
 ...
 ENV VERSON=2.2 MY_ENV=hello
 ...
+```
+**注意**
+
+> 如果设置的环境变量中间有空格，那么环境变量记得用""括起来
+
+例如：
+
+```
+ENV XXX "Hello World"
 ```
 
 #### EXPOSE 暴露端口
