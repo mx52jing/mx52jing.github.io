@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="哈萨Q&#39;s Blog">
 <meta property="og:description" content="Dockerfile命令以及解释1Dockerfile 是一个文本文件，其内包含了一条条的指令(Instruction)，每一条指令构建一层，因此每一条指令的内容，就是描述该层应当如何构建。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-15T03:55:28.732Z">
+<meta property="og:updated_time" content="2019-04-23T10:32:53.858Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker之Dockerfile">
 <meta name="twitter:description" content="Dockerfile命令以及解释1Dockerfile 是一个文本文件，其内包含了一条条的指令(Instruction)，每一条指令构建一层，因此每一条指令的内容，就是描述该层应当如何构建。">
@@ -356,7 +356,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-11-15 11:55:28" itemprop="dateModified" datetime="2018-11-15T11:55:28+08:00">2018-11-15</time>
+                <time title="修改时间：2019-04-23 18:32:53" itemprop="dateModified" datetime="2019-04-23T18:32:53+08:00">2019-04-23</time>
               
             
           </span>
@@ -463,10 +463,21 @@
 <p>例如：</p>
 <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> centos</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="bash">  yum install ...</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">...</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">ENTRYPOINT [<span class="string">"xxx.sh"</span>]</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">CMD [<span class="string">"aaa"</span>]</span></span><br></pre></td></tr></table></figure>
 <p>aaa就会作为参数传到执行的xxx.sh内</p>
+<p>或者是</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> centos</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="bash">  yum install ...</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">...</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">ENTRYPOINT [<span class="string">"xxx.sh"</span>]</span></span><br></pre></td></tr></table></figure>
+<p>比如将这个修改build成demo:v1<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">docker</span> <span class="keyword">build </span>-t demo:<span class="built_in">v1</span> .</span><br></pre></td></tr></table></figure></p>
+<p>然后在命令行执行<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">run</span> <span class="comment">--name demo_server demo:v1 CMD</span></span><br></pre></td></tr></table></figure></p>
+<p>此时的CMD也会作为参数传递给<code>ENTRYPOINT</code>运行的命令</p>
 <h4 id="ENV-设置环境变量"><a href="#ENV-设置环境变量" class="headerlink" title="ENV 设置环境变量"></a>ENV 设置环境变量</h4><p><code>指定一个环境变量，会被后续RUN指令使用，可以在容器内被脚本或者程序调用</code></p>
 <p>有两种格式</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ENV key value</span><br><span class="line"></span><br><span class="line">或者</span><br><span class="line"></span><br><span class="line">ENV <span class="attribute">key1</span>=value1 <span class="attribute">key2</span>=value2 <span class="built_in">..</span>.</span><br></pre></td></tr></table></figure>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">..</span>.</span><br><span class="line">ENV VERSON 2.2</span><br><span class="line"><span class="built_in">..</span>.</span><br><span class="line"></span><br><span class="line">或者</span><br><span class="line"></span><br><span class="line"><span class="built_in">..</span>.</span><br><span class="line">ENV <span class="attribute">VERSON</span>=2.2 <span class="attribute">MY_ENV</span>=hello</span><br><span class="line"><span class="built_in">..</span>.</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong></p>
+<blockquote>
+<p>如果设置的环境变量中间有空格，那么环境变量记得用””括起来</p>
+</blockquote>
+<p>例如：</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ENV</span> XXX <span class="string">"Hello World"</span></span><br></pre></td></tr></table></figure>
 <h4 id="EXPOSE-暴露端口"><a href="#EXPOSE-暴露端口" class="headerlink" title="EXPOSE 暴露端口"></a>EXPOSE 暴露端口</h4><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">EXPOSE</span> <span class="number">7100</span></span><br></pre></td></tr></table></figure>
 <p>EXPOSE是声明容器运行时提供的服务端口，只是一个声明，不会因为这个声明就开启这个端口的服务。</p>
 <p>EXPOSE 和 docker run -p &lt;宿主端口&gt;:&lt;容器端口&gt; 区别：</p>
@@ -478,6 +489,7 @@
 <h5 id="镜像构建上下文"><a href="#镜像构建上下文" class="headerlink" title="镜像构建上下文"></a>镜像构建上下文</h5><p>docker build命令末尾会指定一个路径，通常为 . ,这个.的作用就是来<strong>指定上下文路径</strong>。</p>
 <p><strong>docker build这一构建命令的执行，实际上是使用远程调用形式在服务端（Docker 引擎）完成。在服务端构建时，有可能需要将本地的一些文件复制到镜像里面去，服务器要获取本地需要复制的文件就是要通过这个上下文路径，而这个路径是我们自己在build时指定的路径，docker build命令获取到这个路径之后，会将路径下内容打包，传给Docker引擎。这样Docker引擎收到这个上下文包之后，展开就会得到构建镜像所需文件。</strong></p>
 <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">如果所给出的 URL 不是个仓库地址，而是个 tar 压缩包，那么 Docker 引擎会下载这个包，并自动解压缩，以其作为上下文，开始构建。</span><br><span class="line"></span><br><span class="line">如果标准输入传入的是文本文件，则将其视为 Dockerfile，并开始构建。这种形式由于直接从标准输入中读取 Dockerfile 的内容，它没有上下文，因此不可以像其他方法那样可以将本地文件 <span class="keyword">COPY</span><span class="bash"> 进镜像之类的事情。</span></span><br></pre></td></tr></table></figure>
+
       
     </div>
 
